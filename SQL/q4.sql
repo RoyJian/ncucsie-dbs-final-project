@@ -2,12 +2,13 @@ with
 T As (
     SELECT Dept_Name, CurriculumField_Name
     FROM Student_Dept As sd1
-        LEFT JOIN Student As s1 ON sd1.Dept_ID = s1.Student_Dept
-        LEFT JOIN Student_Course_Record R on s1.Student_ID = R.Student_ID
-        LEFT JOIN Course C2 on R.Course_No = C2.Course_No
-        LEFT JOIN Course_CurriculumField_Record CCFR2 on C2.Course_No = CCFR2.Course_No
+        LEFT JOIN Student s1 ON sd1.Dept_ID = s1.Student_Dept
+        LEFT JOIN Student_Course_Record R ON s1.Student_ID = R.Student_ID
+        LEFT JOIN Section se ON se.Section_No = R.Section_No
+        LEFT JOIN Course c ON se.Course_ID = c.Course_ID
+        LEFT JOIN Course_CurriculumField_Record CCFR2 on c.Course_ID = CCFR2.Course_ID
         LEFT JOIN Curriculum_Field F on CCFR2.CurriculumField_ID = F.CurriculumField_ID
-    WHERE R.Select_Result != 0
+    WHERE R.Select_Result != 0 AND se.Semester =1112
 ),
 T2 As(
     SELECT Student_Dept.Dept_Name, COUNT(*) AS total
