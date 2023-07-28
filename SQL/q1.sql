@@ -14,4 +14,3 @@ FROM
     JOIN Section_Location_Time ON Section."Section_No" = Section_Location_Time."Section_No"
 	JOIN Course ON Section."Course_ID" = Course."Course_ID"
 WHERE Section_Location_Time.Section_No = 'A0001' AND Section_Location_Time.Semester= 1112;
-
